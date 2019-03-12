@@ -101,7 +101,6 @@ class List{
 	return aux02 ;
     }
     
-    
     // Update the the pointer to the next node
     public boolean SetNext(List v_next){
 	next = v_next ;

@@ -18,7 +18,7 @@ package br.ufpe.cin.if688.jflex;
 %{
 
 	private void printTokenInfo(String type) {
-		System.out.println("Token de tipo " + type + " encontrado na linha: " + yyline +  " e coluna " +  yycolumn + " : " + yytext());
+		System.out.println("token gerado foi um " + type + ": '" + yytext() + "' na linha: " + yyline + ", coluna: " + yycolumn);
 	}
 %}
 
@@ -27,8 +27,8 @@ digit = [0-9]
 alphanumeric = ({letter}|{digit})
 whitespace = [\s\n\t\r\f]
 
-single_line_comment = [//](.*)
-multi_line_comment = ([/][*])(.|{whitespace})*([*][/])
+single_line_comment = [/][/]([\s\S]*?)\n
+multi_line_comment = ([/][*])([\s\S]*)([*][/])
 
 identifier = ({letter}|[_]){alphanumeric}*
 integer = ([1-9][0-9]*)|0
@@ -37,31 +37,31 @@ separator = ";"|"."|","|"="|"("|")"|"["|"]"|"{"|"}"
 %%
     
 /* Insira as regras lï¿½xicas no espaï¿½o acima */     
-boolean { printTokenInfo("BOOLEAN"); }
-class	{ printTokenInfo("CLASS"); }
-public	{ printTokenInfo("PUBLIC"); }
-extends	{ printTokenInfo("EXTENDS"); }
-static 	{ printTokenInfo("STATIC"); }
-void	{ printTokenInfo("VOID"); }
-main 	{ printTokenInfo("MAIN"); }
-String	{ printTokenInfo("STRING"); }
-int		{ printTokenInfo("INT"); }
-while	{ printTokenInfo("WHILE"); }
-if		{ printTokenInfo("IF"); }
-else	{ printTokenInfo("ELSE"); }
-return	{ printTokenInfo("RETURN"); }
-length	{ printTokenInfo("LENGTH"); }
-true	{ printTokenInfo("TRUE"); }
-false	{ printTokenInfo("FALSE"); }
-this	{ printTokenInfo("THIS"); }
-new 	{ printTokenInfo("NEW"); }
-System.out.println { printTokenInfo("SYSTEM.OUT.PRINTLN"); } 
-{operator} 	{ printTokenInfo("OPERATOR"); }
-{separator} { printTokenInfo("SEPARATOR"); }
-{integer} { printTokenInfo("INTEGER"); }
-{identifier} { printTokenInfo("ID"); }
+boolean { printTokenInfo("reservado"); }
+class	{ printTokenInfo("reservado"); }
+public	{ printTokenInfo("reservado"); }
+extends	{ printTokenInfo("reservado"); }
+static 	{ printTokenInfo("reservado"); }
+void	{ printTokenInfo("reservado"); }
+main 	{ printTokenInfo("reservado"); }
+String	{ printTokenInfo("reservado"); }
+int		{ printTokenInfo("reservado"); }
+while	{ printTokenInfo("reservado"); }
+if		{ printTokenInfo("reservado"); }
+else	{ printTokenInfo("reservado"); }
+return	{ printTokenInfo("reservado"); }
+length	{ printTokenInfo("reservado"); }
+true	{ printTokenInfo("reservado"); }
+false	{ printTokenInfo("reservado"); }
+this	{ printTokenInfo("reservado"); }
+new 	{ printTokenInfo("reservado"); }
+System.out.println { printTokenInfo("reservado"); } 
+{operator} 	{ printTokenInfo("operador"); }
+{separator} { printTokenInfo("delimitador"); }
+{integer} { printTokenInfo("integer"); }
+{identifier} { printTokenInfo("id"); }
 
-{single_line_comment} { /* Ignorar comentário */}
-{multi_line_comment} { /* Ignorar comentário */ }
+{single_line_comment} { /* Ignorar comentario */}
+{multi_line_comment} { /* Ignorar comentario */ }
 {whitespace} { /* Ignorar whitespace */}
 . { throw new RuntimeException("Caractere ilegal! " + yytext() + " na linha: " + yyline + ", coluna: " + yycolumn); }
