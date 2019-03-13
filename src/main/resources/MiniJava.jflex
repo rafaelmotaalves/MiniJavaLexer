@@ -30,7 +30,7 @@ whitespace = [\s\n\t\r\f]
 single_line_comment = [/][/]([\s\S]*?)\n
 multi_line_comment = ([/][*])([\s\S]*)([*][/])
 
-identifier = ({letter}|[_]){alphanumeric}*
+identifier = ({letter}|[_])({alphanumeric}|[_])*
 integer = ([1-9][0-9]*)|0
 operator = "&&"|"<"|">"|"=="|"!="|"+"|"-"|"*"|"!"
 separator = ";"|"."|","|"="|"("|")"|"["|"]"|"{"|"}"
